@@ -38,35 +38,35 @@
  * 
 */
 
+//Scroll behavior dynamically
+window.onload=function()
+    {
+        document.getElementById("html").style.scrollBehavior="smooth";
+    };
+
 // build the nav
 
 // ul
-var myList = document.getElementById("navbar__list");
+let myList = document.getElementById("navbar__list");
 
 // li
-var listItem;
+let listItem;
 
-// var sectionArr = document.getElementsByClassName("landing__container");
-// var count=1;
 
 // to capture sections in array
-var sectionArr = document.querySelectorAll("section");
+const sectionArr = document.querySelectorAll("section");
 
-// var sectionID = section.getAttribute('id');
-// console.log(section);
 
 for (sectionDetails of sectionArr)
 {   
     listItem = document.createElement("LI");
-    var sectionID = sectionDetails.getAttribute("id");
-    var sectionName = sectionDetails.getAttribute("data-nav");
+    let sectionID = sectionDetails.getAttribute("id");
+    let sectionName = sectionDetails.getAttribute("data-nav");
     
     // Scroll to anchor ID
     listItem.innerHTML="<a href=#"+sectionID+ " class='menu__link'>"+sectionName+"</a>";
-    // count++;
     myList.appendChild(listItem);
-    // console.log(listItem);
-    // listItem.appendChild(sec);
+    
 }
 
 listItem.onclick=function()
@@ -78,8 +78,8 @@ listItem.onclick=function()
         }
     }
 
-var body = document.getElementById("bodyId");
-var x = body.getBoundingClientRect();
+let body = document.getElementById("bodyId");
+let x = body.getBoundingClientRect();
 
 body.onscroll = function()
     {  
@@ -91,10 +91,10 @@ body.onscroll = function()
     }
 
 
-// var body = document.getElementById("bodyTest")
-// var theEvent= body.addEventListener("click",function(e)
+// let body = document.getElementById("bodyTest")
+// let theEvent= body.addEventListener("click",function(e)
 // {
-//     var y = e.clientY;
+//     let y = e.clientY;
 //     y = 52;
 // });
 
@@ -103,7 +103,7 @@ body.onscroll = function()
 // Add class 'active' to section when near top of viewport
 
 // button feature to scroll to the top 
-var btn = document.getElementById("topBtn");
+let btn = document.getElementById("topBtn");
 btn.onclick=function()
 {
     document.body.scrollTo(0,0);
