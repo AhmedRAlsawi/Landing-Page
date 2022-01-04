@@ -115,15 +115,24 @@ section {
     padding: 1em;
     font-weight: bold;
     text-decoration: none;
-    color: #000;
+    color: rgb(32, 32, 32);
 }
 
 .navbar__menu .menu__link:hover {
-    background: rgb(209, 171, 46);
+    background: #d1ab2e;
     color: #fff;
     transition: ease 0.3s all;
     /* Added */
     font-weight: lighter;
+}
+
+/* Added : navbar list itmes  */
+.nav_background 
+{
+    background-color: rgb(207, 207, 67);
+    color: rgb(17, 17, 153)!important;
+    font-size:larger  !important ;
+    transition: all 5s;
 }
 
 /* Header Styles */

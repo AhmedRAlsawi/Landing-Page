@@ -47,6 +47,7 @@ window.onload=function()
 // build the nav
 
 // ul
+// Globabl variable
 var myList = document.getElementById("navbar__list");
 
 // li
@@ -69,14 +70,22 @@ for (sectionDetails of sectionArr)
     
 }
 
-listItem.onclick=function()
+// Added : To add the Active class to the list item
+let theList = document.getElementsByClassName("menu__link");
+
+for (li of theList)
+{
+    li.addEventListener("click",function()
     {
-        for (sectionDetails of sectionArr)
-        if (!(sectionDetails.classList.contains("your-active-class")))
+        for(let i = 0 ; i < theList.length ; i++)
         {
-            sectionDetails.classList.add("your-active-class");
+            theList[i].classList.remove('nav_background');
         }
-    }
+        this.classList.add('nav_background');
+        
+    })
+};
+
 
 let body = document.getElementById("bodyId");
 let x = body.getBoundingClientRect();
@@ -91,16 +100,25 @@ body.onscroll = function()
     }
 
 
-// let body = document.getElementById("bodyTest")
-// let theEvent= body.addEventListener("click",function(e)
-// {
-//     let y = e.clientY;
-//     y = 52;
-// });
-
-
-
 // Add class 'active' to section when near top of viewport
+// Added : To add the Active class to the section in viewport
+document.onscroll = function()
+{
+    for (sectionDetails of sectionArr)
+    {
+        if (sectionDetails.getBoundingClientRect().top >= 0 && sectionDetails.getBoundingClientRect().top <= 0.6)
+        {
+            sectionDetails.classList.add("your-active-class");
+        }
+        else
+        {
+            sectionDetails.classList.remove("your-active-class");
+        }
+        console.log(sectionDetails.getBoundingClientRect().top);
+    }
+    
+    
+}
 
 // button feature to scroll to the top 
 let btn = document.getElementById("topBtn");
