@@ -47,7 +47,7 @@ window.onload=function()
 // build the nav
 
 // ul
-let myList = document.getElementById("navbar__list");
+var myList = document.getElementById("navbar__list");
 
 // li
 let listItem;
