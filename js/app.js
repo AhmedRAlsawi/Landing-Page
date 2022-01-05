@@ -114,10 +114,7 @@ document.onscroll = function()
         {
             sectionDetails.classList.remove("your-active-class");
         }
-        console.log(sectionDetails.getBoundingClientRect().top);
     }
-    
-    
 }
 
 // button feature to scroll to the top 
