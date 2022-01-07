@@ -38,24 +38,13 @@
  * 
 */
 
-//Scroll behavior dynamically
-window.onload=function()
-    {
-        document.getElementById("html").style.scrollBehavior="smooth";
-    };
+// to capture sections in array
+const sectionArr = document.querySelectorAll("section");
 
-// build the nav
-
-// ul
-// Globabl variable
-var myList = document.getElementById("navbar__list");
+let myList = document.getElementById("navbar__list");
 
 // li
 let listItem;
-
-
-// to capture sections in array
-const sectionArr = document.querySelectorAll("section");
 
 
 for (sectionDetails of sectionArr)
@@ -70,20 +59,38 @@ for (sectionDetails of sectionArr)
     
 }
 
-// Added : To add the Active class to the list item
+//Added
+//Scroll behavior dynamically
+let anchor = document.querySelectorAll("a");
+for (element of anchor)
+{
+    element.addEventListener("click", function (e)
+    {
+      e.preventDefault();
+
+      const secName = document.getElementById(
+        this.getAttribute("href").substring(1)
+      );
+      secName.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+};
+
+// Done : To add the Active class to the list item
 let theList = document.getElementsByClassName("menu__link");
 
 for (li of theList)
 {
-    li.addEventListener("click",function()
+    li.addEventListener("click",function(e)
     {
         for(let i = 0 ; i < theList.length ; i++)
         {
             theList[i].classList.remove('nav_background');
         }
         this.classList.add('nav_background');
-        
-    })
+    });
 };
 
 
@@ -101,7 +108,7 @@ body.onscroll = function()
 
 
 // Add class 'active' to section when near top of viewport
-// Added : To add the Active class to the section in viewport
+// Done : To add the Active class to the section in viewport
 document.onscroll = function()
 {
     for (sectionDetails of sectionArr)
@@ -121,7 +128,17 @@ document.onscroll = function()
 let btn = document.getElementById("topBtn");
 btn.onclick=function()
 {
-    document.body.scrollTo(0,0);
+    //Added
+    document.body.scroll({
+        top:0,
+        behavior:"smooth"
+    });
+    //Added
+    // to remove the highlight from all list items
+    for(let i = 0 ; i < theList.length ; i++)
+        {
+            theList[i].classList.remove('nav_background');
+        }
 };
 btn.onmouseover=function()
 {
