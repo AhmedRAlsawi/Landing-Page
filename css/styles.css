@@ -119,14 +119,6 @@ section {
     font-weight: lighter;
 }
 
-/* Added : navbar list itmes  */
-.nav_background 
-{
-    background-color: yellow;
-    color: navy !important;
-    font-size:larger  !important ;
-    transition: all 5s;
-}
 
 /* Header Styles */
 .page__header {
@@ -234,8 +226,8 @@ section:nth-of-type(3n + 1) .landing__container::after {
 /* Section Active Styles */
 /* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
 section.your-active-class {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+    background: rgb(255, 0, 0);
+    background: linear-gradient(0deg, hsla(0, 0%, 0%, 0.333) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 section.your-active-class .landing__container::before {
@@ -276,5 +268,6 @@ section.your-active-class .landing__container::after {
 {
     background-color: navy;
     color: rgb(209, 171, 46) !important;
-    transition: all 0.8s;
+    font-size: larger;
+    transition: all 0.7s;
 }

@@ -11,24 +11,24 @@
  * 
  * JS Standard: ESlint
  * 
- */
+*/
 
 /**
  * Comments should be present at the beginning of each procedure and class.
  * Great to have comments before crucial code sections within the procedure.
- */
+*/
 
 /**
  * Define Global Variables
  * 
- */
+*/
 
 
 /**
  * End Global Variables
  * Start Helper Functions
  * 
- */
+*/
 
 
 
@@ -36,7 +36,7 @@
  * End Helper Functions
  * Begin Main Functions
  * 
- */
+*/
 
 // to capture sections in array
 const sectionArr = document.querySelectorAll("section");
@@ -47,31 +47,34 @@ let myList = document.getElementById("navbar__list");
 let listItem;
 
 
-for (sectionDetails of sectionArr) {
+for (sectionDetails of sectionArr)
+{   
     listItem = document.createElement("LI");
     let sectionID = sectionDetails.getAttribute("id");
     let sectionName = sectionDetails.getAttribute("data-nav");
-
+    
     // Scroll to anchor ID
-    listItem.innerHTML = "<a href=#" + sectionID + " class='menu__link'>" + sectionName + "</a>";
+    listItem.innerHTML = `<a href="#${sectionID}" class='menu__link'>${sectionName}</a>`;
     myList.appendChild(listItem);
-
+    
 }
 
 //Added
 //Scroll behavior dynamically
 let anchor = document.querySelectorAll("a");
-for (element of anchor) {
-    element.addEventListener("click", function(e) {
-        e.preventDefault();
+for (element of anchor)
+{
+    element.addEventListener("click", function (e)
+    {
+      e.preventDefault();
 
-        const secName = document.getElementById(
-            this.getAttribute("href").substring(1)
-        );
-        secName.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-        });
+      const secName = document.getElementById(
+        this.getAttribute("href").substring(1)
+      );
+      secName.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     });
 };
 
@@ -81,65 +84,56 @@ let theList = document.getElementsByClassName("menu__link");
 let body = document.getElementById("bodyId");
 let x = body.getBoundingClientRect();
 
-document.onscroll = function() {
-
-    if (x.top != 2288.34375) {
-        btn.style.opacity = "1";
+document.onscroll = function()
+    {  
+        
+        if ( x.top != 2288.34375)
+        {
+            btn.style.opacity="1";
+        }
     }
-}
 
 
 // Add class 'active' to section when near top of viewport
 // Done : To add the Active class to the section in viewport
-window.onscroll = function() {
-    for (const sectionDetails of sectionArr) {
+window.onscroll = function()
+{
+    for (const sectionDetails of sectionArr)
+    {
         const sectionTop = sectionDetails.getBoundingClientRect().top;
         const link = document.querySelector(`a[href="#${sectionDetails.id}"]`);
-        if (0 <= sectionTop && sectionTop <= 300) {
+        if (0 <= sectionTop && sectionTop <= 300)
+        {
 
             sectionDetails.classList.add("your-active-class");
-            removelistActiveClass();
             link.classList.add("active");
-
-        } else {
+            
+        }
+        else
+        {
             sectionDetails.classList.remove("your-active-class");
             link.classList.remove("active");
         }
     }
 }
 
-for (li of theList) {
-    li.addEventListener("click", function(e) {
-        this.classList.add('nav_background');
-        removelistActiveClass();
-    });
-};
-
-function removelistActiveClass() {
-    for (let i = 0; i < theList.length; i++) {
-        theList[i].classList.remove('nav_background');
-    }
-}
-
 // button feature to scroll to the top 
 let btn = document.getElementById("topBtn");
-btn.onclick = function() {
+btn.onclick=function()
+{
     //Added
     document.body.scroll({
-        top: 0,
-        behavior: "smooth"
+        top:0,
+        behavior:"smooth"
     });
-    //Added
-    // to remove the highlight from all list items
-    for (let i = 0; i < theList.length; i++) {
-        theList[i].classList.remove('nav_background');
-    }
 };
-btn.onmouseover = function() {
-    btn.style.opacity = "1";
+btn.onmouseover=function()
+{
+    btn.style.opacity="1";
 };
-btn.onmouseleave = function() {
-    btn.style.opacity = "0.1";
+btn.onmouseleave=function()
+{
+    btn.style.opacity="0.1";
 };
 
 
@@ -147,7 +141,7 @@ btn.onmouseleave = function() {
  * End Main Functions
  * Begin Events
  * 
- */
+*/
 
 // Build menu 
 
