@@ -47,29 +47,29 @@ let myList = document.getElementById("navbar__list");
 let listItem;
 
 
-for (sectionDetails of sectionArr)
-{   
-    listItem = document.createElement("LI");
-    let sectionID = sectionDetails.getAttribute("id");
-    let sectionName = sectionDetails.getAttribute("data-nav");
-    
-    // Scroll to anchor ID
-    listItem.innerHTML = `<a href="#${sectionID}" class='menu__link'>${sectionName}</a>`;
-    myList.appendChild(listItem);
-    
-}
+sectionArr.forEach(sectionDetails => 
+    {
+        listItem = document.createElement("LI");
+        let sectionID = sectionDetails.getAttribute("id");
+        let sectionName = sectionDetails.getAttribute("data-nav");
+
+        // Scroll to anchor ID 
+        listItem.innerHTML=`<a href="#${sectionID}" class='menu__link'>${sectionName}</a>`;
+        myList.appendChild(listItem);
+
+    });
 
 //Added
 //Scroll behavior dynamically
 let anchor = document.querySelectorAll("a");
 for (element of anchor)
 {
-    element.addEventListener("click", function (e)
+    element.addEventListener("click", (e) =>
     {
       e.preventDefault();
 
       const secName = document.getElementById(
-        this.getAttribute("href").substring(1)
+        e.target.getAttribute("href").substring(1)
       );
       secName.scrollIntoView({
         behavior: "smooth",
@@ -77,9 +77,6 @@ for (element of anchor)
       });
     });
 };
-
-// Done : To add the Active class to the list item
-let theList = document.getElementsByClassName("menu__link");
 
 let body = document.getElementById("bodyId");
 let x = body.getBoundingClientRect();
