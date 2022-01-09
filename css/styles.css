@@ -11,13 +11,6 @@
 
 /* ---- Base Rules ---- */
 
-/* //\\//\\//\\//\\//\\//\\//\\//\\// */
-        /* Scrolling behavior */
-/* html
-{
-    scroll-behavior:smooth ;
-} */
-
 input
 {
     width: 60px;
@@ -120,7 +113,7 @@ section {
 
 .navbar__menu .menu__link:hover {
     background: #d1ab2e;
-    color: #fff;
+    color: blue !important;
     transition: ease 0.3s all;
     /* Added */
     font-weight: lighter;
@@ -129,8 +122,8 @@ section {
 /* Added : navbar list itmes  */
 .nav_background 
 {
-    background-color: #d8d864;
-    color: rgb(17, 17, 153)!important;
+    background-color: yellow;
+    color: navy !important;
     font-size:larger  !important ;
     transition: all 5s;
 }
@@ -267,4 +260,21 @@ section.your-active-class .landing__container::after {
 		           translate(-1em) 
 		           rotate(-360deg);
 	}
+}
+
+/* Responsive li */
+@media only screen and (max-width : 450px)
+{
+    .navbar__menu li
+    {
+        display: block !important;
+        text-align: center;
+    }
+}
+
+.active
+{
+    background-color: navy;
+    color: rgb(209, 171, 46) !important;
+    transition: all 0.8s;
 }
