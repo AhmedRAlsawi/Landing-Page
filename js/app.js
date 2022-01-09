@@ -43,38 +43,51 @@ const sectionArr = document.querySelectorAll("section");
 
 let myList = document.getElementById("navbar__list");
 
+
+let navBarHeight = ()=> document.getElementsByClassName("navbar__menu")[0].clientHeight;
+
+
+
 // li
 let listItem;
 
+sectionArr.forEach(sectionDetails => 
+    {
+        listItem = document.createElement("LI");
+        let sectionID = sectionDetails.getAttribute("id");
+        let sectionName = sectionDetails.getAttribute("data-nav");
+        
+        // Scroll to anchor ID
+        // "<a href=#"+sectionID+ " class='menu__link'>"+sectionName+"</a>" 
+        listItem.innerHTML=`<a href="#${sectionID}" class='menu__link'>${sectionName}</a>`;
+        myList.appendChild(listItem);
+    
+    });
 
-for (sectionDetails of sectionArr)
-{   
-    listItem = document.createElement("LI");
-    let sectionID = sectionDetails.getAttribute("id");
-    let sectionName = sectionDetails.getAttribute("data-nav");
-    
-    // Scroll to anchor ID
-    listItem.innerHTML="<a href=#"+sectionID+ " class='menu__link'>"+sectionName+"</a>";
-    myList.appendChild(listItem);
-    
-}
+    // keep comment : top of element between top and bottom of viewport || bottom of element between top and bottom of viewport || top of element before top of view && bottom of element > bottom of view
 
 //Added
 //Scroll behavior dynamically
 let anchor = document.querySelectorAll("a");
 for (element of anchor)
 {
-    element.addEventListener("click", function (e)
+    element.addEventListener("click", (e) =>
     {
       e.preventDefault();
 
       const secName = document.getElementById(
-        this.getAttribute("href").substring(1)
+        e.target.getAttribute("href").substring('#section'.length)
       );
-      secName.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+
+      // get x and y for the section
+      let idx = parseInt( e.target.getAttribute("href").substring('#section'.length))-1;
+      console.log("idx: ",idx);
+      let rect = sectionArr[idx].scrollHeight;
+      window.scrollTo({top: rect-navBarHeight(), behavior:'smooth'});
+    //   secName.scrollIntoView({
+    //     behavior: "smooth",
+    //     block: "start",
+    //   });
     });
 };
 
@@ -83,13 +96,13 @@ let theList = document.getElementsByClassName("menu__link");
 
 for (li of theList)
 {
-    li.addEventListener("click",function(e)
+    li.addEventListener("click",(e) =>
     {
         for(let i = 0 ; i < theList.length ; i++)
         {
             theList[i].classList.remove('nav_background');
         }
-        this.classList.add('nav_background');
+        e.target.classList.add('nav_background');
     });
 };
 
@@ -113,9 +126,13 @@ document.onscroll = function()
 {
     for (sectionDetails of sectionArr)
     {
-        if (sectionDetails.getBoundingClientRect().top >= 0 && sectionDetails.getBoundingClientRect().top <= 0.6)
+        //sectionDetails = sectionArr[1];
+        //const topRect = sectionDetails.getBoundingClientRect();
+        //console.log (topRect)
+        if (isElementInViewport(sectionDetails) || isViewportInElement(sectionDetails))
         {
             sectionDetails.classList.add("your-active-class");
+            console.log("section is active");
         }
         else
         {
@@ -123,6 +140,41 @@ document.onscroll = function()
         }
     }
 }
+
+function isViewportInElement (el) {
+
+    var rect = el.getBoundingClientRect();
+    console.log('one');
+    console.log(rect.top, 0);
+    console.log(rect.left, 0);
+    console.log(rect.bottom, (window.innerHeight || document.documentElement.clientHeight));
+    console.log(rect.right, (window.innerWidth || document.documentElement.clientWidth));
+
+    return (
+        rect.top <= 0 &&
+        rect.left >= 0 &&
+        (rect.bottom + navBarHeight()) >= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
+    );
+}
+
+
+function isElementInViewport (el) {
+
+    var rect = el.getBoundingClientRect();
+    // console.log('two');
+    // console.log(rect.top >= 0);
+    // console.log(rect.left >= 0);
+    // console.log(rect.bottom, (window.innerHeight || document.documentElement.clientHeight));
+    // console.log(rect.right <= (window.innerWidth || document.documentElement.clientWidth));
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        (rect.bottom ) <= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
+    );
+}
+
 
 // button feature to scroll to the top 
 let btn = document.getElementById("topBtn");
