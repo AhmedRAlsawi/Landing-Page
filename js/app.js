@@ -57,8 +57,7 @@ sectionArr.forEach(sectionDetails =>
         let sectionID = sectionDetails.getAttribute("id");
         let sectionName = sectionDetails.getAttribute("data-nav");
         
-        // Scroll to anchor ID
-        // "<a href=#"+sectionID+ " class='menu__link'>"+sectionName+"</a>" 
+        // Scroll to anchor ID 
         listItem.innerHTML=`<a href="#${sectionID}" class='menu__link'>${sectionName}</a>`;
         myList.appendChild(listItem);
     
